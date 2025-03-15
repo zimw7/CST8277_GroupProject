@@ -1,0 +1,31 @@
+<persistence version="3.0" 
+   xmlns="https://jakarta.ee/xml/ns/persistence"  
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+  >
+  <persistence-unit name="acmemedical-PU" transaction-type="JTA">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <jta-data-source>java:app/jdbc/acmemedical</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+        <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+        <property name="jakarta.persistence.schema-generation.create-source" value="script" />
+        <property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/sql/acmemedical-create.sql" />
+        <property name="jakarta.persistence.schema-generation.drop-source" value="script" />
+        <property name="jakarta.persistence.schema-generation.drop-script-source" value="META-INF/sql/acmemedical-drop.sql" />
+        <property name="jakarta.persistence.sql-load-script-source" value="META-INF/sql/acmemedical-data.sql"/>
+        <!-- Hibernate specific props 
+           https://docs.jboss.org/hibernate/stable/orm/userguide/html_single/Hibernate_User_Guide.html#configurations
+        -->
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+        <property name="hibernate.format_sql" value="true"/>
+        <property name="hibernate.use_sql_comments" value="true"/>
+        <property name="hibernate.connection.autocommit" value="true"/>
+        <property name="hibernate.hbm2ddl.import_files_sql_extractor" value="org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor"/>
+        <property name="hibernate.transaction.coordinator_class" value="jta" />
+        <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
+        <!-- To solve LazyInitializationException -->
+        <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+    </properties>
+  </persistence-unit>
+</persistence>
