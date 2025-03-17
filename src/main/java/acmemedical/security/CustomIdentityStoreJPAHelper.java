@@ -4,6 +4,12 @@
  * @author Teddy Yap
  * @author Mike Norman
  * 
+ * Group Members:
+ * - Jiaying Qiu
+ * - Tianshu Liu
+ * - Mengying Liu
+ * - Zimeng Wang
+ * 
  */
 package acmemedical.security;
 

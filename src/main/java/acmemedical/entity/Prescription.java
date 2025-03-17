@@ -3,6 +3,13 @@
  *
  * @author Teddy Yap
  * 
+ * 
+ * Group Members:
+ * - Jiaying Qiu
+ * - Tianshu Liu
+ * - Mengying Liu
+ * - Zimeng Wang
+ * 
  */
 package acmemedical.entity;
 

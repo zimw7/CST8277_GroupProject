@@ -4,6 +4,12 @@
  * @author Teddy Yap
  * @author Shariar (Shawn) Emami
  * 
+ * Group Members:
+ * - Jiaying Qiu
+ * - Tianshu Liu
+ * - Mengying Liu
+ * - Zimeng Wang
+ * 
  */
 package acmemedical.ejb;
 
