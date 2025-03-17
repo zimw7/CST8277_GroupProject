@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: acmemedical.TestACMEMedicalSystem
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.052 s <<< FAILURE! - in acmemedical.TestACMEMedicalSystem
+acmemedical.TestACMEMedicalSystem.test01_all_physicians_with_adminrole  Time elapsed: 0.525 s  <<< ERROR!
+jakarta.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+	at acmemedical.TestACMEMedicalSystem.test01_all_physicians_with_adminrole(TestACMEMedicalSystem.java:93)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at acmemedical.TestACMEMedicalSystem.test01_all_physicians_with_adminrole(TestACMEMedicalSystem.java:93)
+
