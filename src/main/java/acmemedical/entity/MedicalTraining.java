@@ -11,7 +11,17 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @SuppressWarnings("unused")
 
@@ -20,13 +30,24 @@ import jakarta.persistence.Embedded;
  */
 //TODO MT01 - Add the missing annotations.
 //TODO MT02 - Do we need a mapped super class?  If so, which one?
+@Entity
+@Table(name = "medical_training")
+@Access(AccessType.FIELD)
+@NamedQuery(name = MedicalTraining.ALL_TRAININGS_QUERY_NAME, query = "SELECT mt FROM MedicalTraining mt")
+@NamedQuery(name = MedicalTraining.FIND_BY_ID, query = "SELECT mt FROM MedicalTraining mt WHERE mt.id = :param1")
 public class MedicalTraining extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	public static final String ALL_TRAININGS_QUERY_NAME = "MedicalTraining.findAll";
+	public static final String FIND_BY_ID = "MedicalTraining.findById";
+	
 	// TODO MT03 - Add annotations for M:1.  What should be the cascade and fetch types?
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "school_id", referencedColumnName = "school_id", nullable = false)
 	private MedicalSchool school;
 
 	// TODO MT04 - Add annotations for 1:1.  What should be the cascade and fetch types?
+	@OneToOne(mappedBy = "medicalTraining", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
 	private MedicalCertificate certificate;
 
 	@Embedded
