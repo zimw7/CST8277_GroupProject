@@ -18,11 +18,15 @@ import java.util.Set;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -39,9 +43,10 @@ import jakarta.persistence.Table;
 @Access(AccessType.FIELD)
 @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p")
 @NamedQuery(name = "Patient.findById", query = "SELECT p FROM Patient p WHERE p.id = :param1")
+@AttributeOverride(name = "id", column = @Column(name = "patient_id"))
 public class Patient extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	// TODO PA03 - Add missing annotations.
 	@Basic(optional = false)
 	@Column(name = "first_name", nullable = false, length = 50)

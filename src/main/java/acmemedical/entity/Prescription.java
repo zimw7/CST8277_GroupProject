@@ -18,6 +18,7 @@ import java.util.Objects;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -38,6 +39,7 @@ import jakarta.persistence.Table;
 @Table(name = "prescription")
 @Access(AccessType.FIELD)
 @NamedQuery(name = "Prescription.findAll", query = "SELECT p FROM Prescription p")
+@AttributeOverride(name = "id", column = @Column(name = "prescription_id"))
 public class Prescription extends PojoBaseCompositeKey<PrescriptionPK> implements Serializable {
 	private static final long serialVersionUID = 1L;
 

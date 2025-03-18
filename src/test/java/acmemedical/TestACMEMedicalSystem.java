@@ -26,8 +26,10 @@ import java.util.List;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 
@@ -95,5 +97,103 @@ public class TestACMEMedicalSystem {
         List<Physician> physicians = response.readEntity(new GenericType<List<Physician>>(){});
         assertThat(physicians, is(not(empty())));
         assertThat(physicians, hasSize(1));
+    }
+    
+    
+    /**
+     * get Physician by id
+     */
+    @Test
+    public void test02_getPhysicianById_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME + "/1")
+            .request(MediaType.APPLICATION_JSON)
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+        Physician physician = response.readEntity(Physician.class);
+        assertThat(physician.getId(), is(1));
+    }
+
+    /**
+     * 3. get physician ID = 1995, 404
+     */
+    @Test
+    public void test03_getPhysicianById_notFound() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME + "/1995") // ID 1995 not exist
+            .request(MediaType.APPLICATION_JSON)
+            .get();
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+    /**
+     * 4. get all Physician by admin
+     */
+    @Test
+    public void test04_getAllPhysicians_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME)
+            .request(MediaType.APPLICATION_JSON)
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+
+        List<Physician> physicians = response.readEntity(new GenericType<List<Physician>>() {});
+        assertThat(physicians, is(not(empty())));
+    }
+
+    /**
+     * 5. get all Physician by normal user
+     */
+    @Test
+    public void test05_getAllPhysicians_fail() {
+        Response response = webTarget
+            .register(userAuth)
+            .path(PHYSICIAN_RESOURCE_NAME)
+            .request(MediaType.APPLICATION_JSON)
+            .get();
+
+        assertThat(response.getStatus(), is(403));
+    }
+
+    /**
+     * 6. new Physician by admin
+     */
+    @Test
+    public void test06_createPhysician_success() {
+        Physician newPhysician = new Physician();
+        newPhysician.setFirstName("Jane");
+        newPhysician.setLastName("Doe");
+        newPhysician.setVersion(1);
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME)
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(newPhysician, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), is(200)); // HTTP 201 Created
+    }
+    
+    /**
+     * 7. new Physician by normal user
+     */
+    @Test
+    public void test07_createPhysician_fail() {
+        Physician newPhysician = new Physician();
+        newPhysician.setFirstName("Jane");
+        newPhysician.setLastName("Doe");
+
+        Response response = webTarget
+            .register(userAuth)
+            .path(PHYSICIAN_RESOURCE_NAME)
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(newPhysician, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), is(403)); // HTTP 201 Created
     }
 }

@@ -16,6 +16,7 @@ import java.io.Serializable;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -39,6 +40,7 @@ import jakarta.persistence.Table;
 @Access(AccessType.FIELD)
 @NamedQuery(name = MedicalCertificate.ALL_CERTIFICATES_QUERY_NAME, query = "SELECT mc FROM MedicalCertificate mc")
 @NamedQuery(name = MedicalCertificate.ID_CARD_QUERY_NAME, query = "SELECT mc FROM MedicalCertificate mc WHERE mc.id = :param1")
+@AttributeOverride(name = "id", column = @Column(name = "certificate_id"))
 public class MedicalCertificate extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
