@@ -50,11 +50,13 @@ import jakarta.persistence.Table;
 @Table(name = "security_user")
 @Access(AccessType.FIELD)
 @NamedQuery(name = SecurityUser.USER_BY_NAME_QUERY, query = "SELECT u FROM SecurityUser u WHERE u.username = :param1")
+@NamedQuery(name = SecurityUser.USER_BY_PHYSICIAN_ID, query = "SELECT u FROM SecurityUser u WHERE u.physician.id = :physicianId")
 public class SecurityUser implements Serializable, Principal {
     /** Explicit set serialVersionUID */
     private static final long serialVersionUID = 1L;
     
     public static final String USER_BY_NAME_QUERY = "SecurityUser.userByName";
+    public static final String USER_BY_PHYSICIAN_ID = "SecurityUser.userByPhysicianId";
 
     //TODO SU02 - Add annotations.
     @Id
