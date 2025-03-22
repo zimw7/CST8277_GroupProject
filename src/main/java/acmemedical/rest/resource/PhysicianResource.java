@@ -22,6 +22,7 @@ import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.ForbiddenException;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -105,6 +106,34 @@ public class PhysicianResource {
         return response;
     }
 
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updatePhysician(@PathParam("id") int id, Physician physician) {
+        Physician updated = service.updatePhysicianById(id, physician);
+        if (updated == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Physician not found").build();
+        }
+        return Response.ok(updated).build();
+    }
+
+    @DELETE
+    @RolesAllowed({ADMIN_ROLE})  
+    @Path("/{id}")  
+    public Response deletePhysicianById(@PathParam("id") int id) {
+        Response response = null;
+        try {
+            service.deletePhysicianById(id);
+        } catch (Exception e) {
+            response = Response.serverError()
+                .entity("{\"error\":\"Internal server error: " + e.getMessage() + "\"}")
+                .build();
+        }
+        return response;
+    }
+
+    
     @PUT
     //Only an ‘ADMIN_ROLE’ user can associate a Medicine and/or Patient to a Physician.
     @RolesAllowed({ADMIN_ROLE})

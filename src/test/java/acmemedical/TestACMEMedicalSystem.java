@@ -176,7 +176,7 @@ public class TestACMEMedicalSystem {
             .request(MediaType.APPLICATION_JSON)
             .post(Entity.entity(newPhysician, MediaType.APPLICATION_JSON));
 
-        assertThat(response.getStatus(), is(200)); // HTTP 201 Created
+        assertThat(response.getStatus(), is(200)); // HTTP 200 Created
     }
     
     /**
