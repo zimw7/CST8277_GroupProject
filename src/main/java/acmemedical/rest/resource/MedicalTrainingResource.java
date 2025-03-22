@@ -45,7 +45,7 @@ import acmemedical.ejb.ACMEMedicalService;
 import acmemedical.entity.MedicalTraining;
 import acmemedical.entity.Physician;
 import acmemedical.entity.SecurityUser;
-import acmemedical.entity.MedicalSchool;
+
 
 @Path("/medicaltraining")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -102,7 +102,7 @@ public class MedicalTrainingResource {
     @RolesAllowed({ADMIN_ROLE})
     public Response addMedicalTraining (MedicalTraining newTraining) {
 
-        LOG.debug("Deleting medical training with id = {}", newTraining.getId());
+        LOG.debug("Adding new medical training", newTraining.getId());
         Response response = null;
         MedicalTraining newMedicalTraining = service.persistMedicalTraining(newTraining);
 
@@ -113,7 +113,7 @@ public class MedicalTrainingResource {
     @DELETE
     @RolesAllowed({ADMIN_ROLE})
     public Response deleteMedicalTrainingById(int id) {
-        LOG.debug("Deleting club membership with id = {}", id);
+        LOG.debug("Deleting medical training with id = {}", id);
         service.deleteMedicalTraining(id);
         return Response.ok(id).build();
     }

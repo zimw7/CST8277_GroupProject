@@ -55,6 +55,7 @@ public class MedicalSchoolResource {
     protected SecurityContext sc;
     
     @GET
+    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
     public Response getMedicalSchools() {
         LOG.debug("Retrieving all medical schools...");
         List<MedicalSchool> medicalSchools = service.getAllMedicalSchools();
@@ -86,8 +87,8 @@ public class MedicalSchoolResource {
     }
     
     // Please try to understand and test the below methods:
-    @RolesAllowed({ADMIN_ROLE})
     @POST
+    @RolesAllowed({ADMIN_ROLE})
     public Response addMedicalSchool(MedicalSchool newMedicalSchool) {
         LOG.debug("Adding a new medical school = {}", newMedicalSchool);
         if (service.isDuplicated(newMedicalSchool)) {
@@ -100,8 +101,8 @@ public class MedicalSchoolResource {
         }
     }
 
-    @RolesAllowed({ADMIN_ROLE})
     @POST
+    @RolesAllowed({ADMIN_ROLE})
     @Path("/{medicalSchoolId}/medicaltraining")
     public Response addMedicalTrainingToMedicalSchool(@PathParam("medicalSchoolId") int msId, MedicalTraining newMedicalTraining) {
         LOG.debug("Adding a new MedicalTraining to medical school with id = {}", msId);
@@ -110,12 +111,12 @@ public class MedicalSchoolResource {
         newMedicalTraining.setMedicalSchool(ms);
         ms.getMedicalTrainings().add(newMedicalTraining);
         service.updateMedicalSchool(msId, ms);
-        
+
         return Response.ok(sc).build();
     }
 
-    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
     @PUT
+    @RolesAllowed({ADMIN_ROLE})
     @Path("/{medicalSchoolId}")
     public Response updateMedicalSchool(@PathParam("medicalSchoolId") int msId, MedicalSchool updatingMedicalSchool) {
         LOG.debug("Updating a specific medical school with id = {}", msId);

@@ -19,10 +19,13 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.CoreMatchers.is;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -48,6 +51,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import acmemedical.entity.Physician;
+import acmemedical.entity.MedicalSchool;
+import acmemedical.entity.Medicine;
+import acmemedical.entity.Patient;
+import acmemedical.entity.PrivateSchool;
+import acmemedical.entity.PublicSchool;
 
 @SuppressWarnings("unused")
 
@@ -101,7 +109,7 @@ public class TestACMEMedicalSystem {
     
     
     /**
-     * get Physician by id
+     * 2.get Physician by id
      */
     @Test
     public void test02_getPhysicianById_success() {
@@ -218,11 +226,406 @@ public class TestACMEMedicalSystem {
     }
 
 
+   
+    
     /**
-     * 9. delete Physician by admin
+     * 9. Get all medical schools with ADMIN_ROLE
      */
     @Test
-    public void test09_deletePhysician_success() {
+    public void test09_getAllMedicalSchools_withAdmin() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalschool")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+    
+    /**
+     * 10. Get specific medical school by id with ADMIN_ROLE
+     */
+    @Test
+    public void test10_getMedicalSchoolById_asAdmin() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalschool/1")
+            .request(MediaType.APPLICATION_JSON)
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 11. Create medical school as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test11_createMedicalSchool_asAdmin_success() {
+        PublicSchool newSchool = new PublicSchool();
+        newSchool.setName("CST Medical College");
+
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalschool")
+            .request(MediaType.APPLICATION_JSON)
+            .post(Entity.entity(newSchool, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 12. Update medical school as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test12_updateMedicalSchool_asAdmin_success() {
+        PublicSchool update = new PublicSchool();
+        update.setId(1);
+        update.setName("Updated Medical School");
+
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalschool/1")
+            .request(MediaType.APPLICATION_JSON)
+            .put(Entity.entity(update, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 13. Update medical school as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test13_updateMedicalSchool_asUser_forbidden() {
+        PublicSchool update = new PublicSchool();
+        update.setId(1);
+        update.setName("User Update Attempt");
+
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicalschool/1")
+            .request(MediaType.APPLICATION_JSON)
+            .put(Entity.entity(update, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), anyOf(is(401), is(403)));
+    }
+
+
+    
+    /**
+     * 14. Get all medicines as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test14_getAllMedicines_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicine")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 15. Get medicine by ID as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test15_getMedicineById_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicine/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 16. Get non-existent medicine by ID as ADMIN_ROLE (404 Not Found)
+     */
+    @Test
+    public void test16_getMedicineById_notFound() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicine/999")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+    /**
+     * 17. Update non-existent medicine as ADMIN_ROLE (404 Not Found)
+     */
+    @Test
+    public void test17_updateMedicine_notFound() {
+        Medicine updatedMed = new Medicine();
+        updatedMed.setDrugName("NonExistentMed");
+
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicine/999")
+            .request()
+            .put(Entity.json(updatedMed));
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+
+    /**
+     * 18. Get all patients as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test18_getAllPatients_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("patient")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 19. Get all patients as USER_ROLE (200 OK)
+     */
+    @Test
+    public void test19_getAllPatients_asUser_success() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("patient")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 20. Get patient by ID as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test20_getPatientById_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("patient/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 21. Get patient by ID as USER_ROLE (200 OK)
+     */
+    @Test
+    public void test21_getPatientById_asUser_success() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("patient/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 22. Get non-existent patient by ID as ADMIN_ROLE (404 Not Found)
+     */
+    @Test
+    public void test22_getPatientById_notFound() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("patient/999")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+
+    /**
+     * 23. Add patient as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test23_addPatient_asUser_forbidden() {
+        Patient newPatient = new Patient();
+        newPatient.setFirstName("User");
+        newPatient.setLastName("Attempt");
+
+        Response response = webTarget
+            .register(userAuth)
+            .path("patient")
+            .request()
+            .post(Entity.json(newPatient));
+
+        assertThat(response.getStatus(), is(403));
+    }
+
+    
+    /**
+     * 24. Get all prescriptions as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test24_getAllPrescriptions_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("prescription")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 25. Get prescription by ID as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test25_getPrescriptionById_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("prescription/1/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 26. Get prescription by non-existent ID (404 Not Found)
+     */
+    @Test
+    public void test26_getPrescriptionById_notFound() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("prescription/999/999")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+
+
+    /**
+     * 27. Get all medical certificates as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test27_getAllMedicalCertificates_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalcertificate")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 28. Get medical certificate by ID as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test28_getMedicalCertificateById_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalcertificate/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 29. Get medical certificate by ID as USER_ROLE (200 OK if owner)
+     */
+    @Test
+    public void test29_getMedicalCertificateById_asUser_success_ifOwner() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicalcertificate/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+
+    /**
+     * 30. Add medical certificate as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test30_addMedicalCertificate_asUser_forbidden() {
+        Map<String, Integer> requestBody = Map.of("Physician_id", 2);
+
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicalcertificate")
+            .request()
+            .post(Entity.json(requestBody));
+
+        assertThat(response.getStatus(), is(403));
+    }
+    
+    /**
+     * 31. Get all medical trainings as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test31_getAllMedicalTrainings_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicaltraining")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 32. Get specific medical training by ID as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test32_getMedicalTrainingById_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicaltraining/1")
+            .request()
+            .get();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+
+    /**
+     *33. Delete medical certificate as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test33_deleteMedicalCertificate_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalcertificate/1") // Use a valid certificate ID
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 34. Delete medical certificate as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test34_deleteMedicalCertificate_asUser_forbidden() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicalcertificate/2") // Replace with existing or mock
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), anyOf(is(401), is(403)));
+    }
+    
+    /**
+     * 35. delete Physician by admin
+     */
+    @Test
+    public void test35_deletePhysician_success() {
         Response response = webTarget
             .register(adminAuth)
             .path(PHYSICIAN_RESOURCE_NAME + "/1") 
@@ -233,10 +636,10 @@ public class TestACMEMedicalSystem {
     }
 
     /**
-     * 10. delete Physician by normal user (403 Forbidden)
+     * 36. delete Physician by normal user (403 Forbidden)
      */
     @Test
-    public void test10_deletePhysician_fail_unauthorized() {
+    public void test36_deletePhysician_fail_unauthorized() {
         Response response = webTarget
             .register(userAuth)
             .path(PHYSICIAN_RESOURCE_NAME + "/2")
@@ -245,6 +648,76 @@ public class TestACMEMedicalSystem {
 
         assertThat(response.getStatus(), is(401));
     }
-
     
+    /**
+     * 37. Delete medical school as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test37_deleteMedicalSchool_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicalschool/1")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 38. Delete medical school as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test38_deleteMedicalSchool_asUser_forbidden() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicalschool/2")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), anyOf(is(401), is(403)));
+    }
+    
+    /**
+     * 39. Delete medicine as ADMIN_ROLE (200 OK)
+     */
+    @Test
+    public void test39_deleteMedicine_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("medicine/1")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+    /**
+     * 40. Delete medicine as USER_ROLE (403 Forbidden)
+     */
+    @Test
+    public void test40_deleteMedicine_asUser_forbidden() {
+        Response response = webTarget
+            .register(userAuth)
+            .path("medicine/2")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), anyOf(is(401), is(403)));
+    }
+    
+    /**
+     * 41. Delete patient as ADMIN_ROLE (204 No Content)
+     */
+    @Test
+    public void test41_deletePatient_asAdmin_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path("patient/1")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(204));
+    }
+    
+
 }

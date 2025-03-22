@@ -420,5 +420,34 @@ public class ACMEMedicalService implements Serializable {
         }
         return null;
     }
+    
+    @Transactional
+    public void deleteCertificateById(int CertificateId) {
+        MedicalCertificate Certificate = getById(MedicalCertificate.class, MedicalCertificate.ID_CARD_QUERY_NAME, CertificateId);
+        if (Certificate != null) {
+            em.remove(Certificate);
+        }
+
+    }
+
+    @Transactional
+    public MedicalCertificate persistCertificate(MedicalCertificate newCertificate) {
+        em.persist(newCertificate);
+        return newCertificate;
+    }
+
+    public List<MedicalCertificate> getAllCertificates() {
+        TypedQuery<MedicalCertificate> allCertificatesQuery = em.createNamedQuery(MedicalCertificate.ALL_CERTIFICATES_QUERY_NAME, MedicalCertificate.class);
+        return allCertificatesQuery.getResultList();
+    }
+
+    public MedicalCertificate getCertificateById(int membershipId){
+        TypedQuery<MedicalCertificate> idQuery = em.createNamedQuery(MedicalCertificate.ID_CARD_QUERY_NAME , MedicalCertificate.class);
+        idQuery.setParameter(PARAM1,membershipId);
+        MedicalCertificate CertificateById = idQuery.getSingleResult();
+        return CertificateById;
+
+    }
+
    
 }

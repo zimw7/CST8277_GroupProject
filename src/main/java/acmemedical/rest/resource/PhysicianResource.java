@@ -107,15 +107,6 @@ public class PhysicianResource {
         return response;
     }
 
-    @DELETE
-    @Path(RESOURCE_PATH_ID_PATH)
-    public Response deletePhysician(@PathParam("physicianId") int physicianId) {
-        LOG.debug("Deleting physician with id = {}", physicianId);
-        service.deletePhysicianById(physicianId);
-        Response response = Response.ok(sc).build();
-        return response;
-    }
-
     @PUT
     @Path("/{id}")
     @RolesAllowed({ADMIN_ROLE, USER_ROLE})
