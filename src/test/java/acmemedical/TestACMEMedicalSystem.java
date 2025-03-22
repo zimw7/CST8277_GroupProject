@@ -196,4 +196,55 @@ public class TestACMEMedicalSystem {
 
         assertThat(response.getStatus(), is(403)); // HTTP 201 Created
     }
+    
+    /**
+     * 8. update Physician by admin
+     */
+    @Test
+    public void test08_updatePhysician_success() {
+        Physician updatedPhysician = new Physician();
+        updatedPhysician.setId(1); 
+        updatedPhysician.setVersion(1); 
+        updatedPhysician.setFirstName("Updated");
+        updatedPhysician.setLastName("Qiu");
+
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME + "/1")
+            .request(MediaType.APPLICATION_JSON)
+            .put(Entity.entity(updatedPhysician, MediaType.APPLICATION_JSON));
+
+        assertThat(response.getStatus(), is(200));
+    }
+
+
+    /**
+     * 9. delete Physician by admin
+     */
+    @Test
+    public void test09_deletePhysician_success() {
+        Response response = webTarget
+            .register(adminAuth)
+            .path(PHYSICIAN_RESOURCE_NAME + "/1") 
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(204));
+    }
+
+    /**
+     * 10. delete Physician by normal user (403 Forbidden)
+     */
+    @Test
+    public void test10_deletePhysician_fail_unauthorized() {
+        Response response = webTarget
+            .register(userAuth)
+            .path(PHYSICIAN_RESOURCE_NAME + "/2")
+            .request()
+            .delete();
+
+        assertThat(response.getStatus(), is(401));
+    }
+
+    
 }
