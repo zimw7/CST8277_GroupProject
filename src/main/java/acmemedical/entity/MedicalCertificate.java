@@ -98,9 +98,9 @@ public class MedicalCertificate extends PojoBase implements Serializable {
 		this.signed = signed;
 	}
 
-	public void setSigned(boolean signed) {
+	/*public void setSigned(boolean signed) {
 		this.signed = (byte) (signed ? 0b0001 : 0b0000);
-	}
+	}*/
 	
 	//Inherited hashCode/equals is sufficient for this entity class
 

@@ -22,6 +22,7 @@ import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.ForbiddenException;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -38,6 +39,7 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.soteria.WrappingCallerPrincipal;
 
 import acmemedical.ejb.ACMEMedicalService;
+import acmemedical.entity.MedicalSchool;
 import acmemedical.entity.Medicine;
 import acmemedical.entity.SecurityUser;
 import acmemedical.entity.Physician;
@@ -102,6 +104,28 @@ public class PhysicianResource {
         // Build a SecurityUser linked to the new physician
         service.buildUserForNewPhysician(newPhysicianWithIdTimestamps);
         response = Response.ok(newPhysicianWithIdTimestamps).build();
+        return response;
+    }
+    
+    @PUT
+    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
+    @Path(RESOURCE_PATH_ID_PATH)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updatePhysician(@PathParam("id") int id, Physician physician) {
+        Physician updated = service.updatePhysicianById(id, physician);
+        if (updated == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Physician not found").build();
+        }
+        return Response.ok(updated).build();
+    }
+
+    @DELETE
+    @Path(RESOURCE_PATH_ID_PATH)
+    public Response deletePhysician(@PathParam("physicianId") int physicianId) {
+        LOG.debug("Deleting physician with id = {}", physicianId);
+        service.deletePhysicianById(physicianId);
+        Response response = Response.ok(sc).build();
         return response;
     }
 
