@@ -106,10 +106,19 @@ public class PhysicianResource {
         response = Response.ok(newPhysicianWithIdTimestamps).build();
         return response;
     }
-    
-    @PUT
-    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
+
+    @DELETE
     @Path(RESOURCE_PATH_ID_PATH)
+    public Response deletePhysician(@PathParam("physicianId") int physicianId) {
+        LOG.debug("Deleting physician with id = {}", physicianId);
+        service.deletePhysicianById(physicianId);
+        Response response = Response.ok(sc).build();
+        return response;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePhysician(@PathParam("id") int id, Physician physician) {
@@ -121,14 +130,21 @@ public class PhysicianResource {
     }
 
     @DELETE
-    @Path(RESOURCE_PATH_ID_PATH)
-    public Response deletePhysician(@PathParam("physicianId") int physicianId) {
-        LOG.debug("Deleting physician with id = {}", physicianId);
-        service.deletePhysicianById(physicianId);
-        Response response = Response.ok(sc).build();
+    @RolesAllowed({ADMIN_ROLE})  
+    @Path("/{id}")  
+    public Response deletePhysicianById(@PathParam("id") int id) {
+        Response response = null;
+        try {
+            service.deletePhysicianById(id);
+        } catch (Exception e) {
+            response = Response.serverError()
+                .entity("{\"error\":\"Internal server error: " + e.getMessage() + "\"}")
+                .build();
+        }
         return response;
     }
 
+    
     @PUT
     //Only an ‘ADMIN_ROLE’ user can associate a Medicine and/or Patient to a Physician.
     @RolesAllowed({ADMIN_ROLE})
