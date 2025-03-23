@@ -39,6 +39,7 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.soteria.WrappingCallerPrincipal;
 
 import acmemedical.ejb.ACMEMedicalService;
+import acmemedical.entity.MedicalSchool;
 import acmemedical.entity.Medicine;
 import acmemedical.entity.SecurityUser;
 import acmemedical.entity.Physician;
@@ -108,6 +109,7 @@ public class PhysicianResource {
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed({ADMIN_ROLE, USER_ROLE})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePhysician(@PathParam("id") int id, Physician physician) {

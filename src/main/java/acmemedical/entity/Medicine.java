@@ -38,6 +38,8 @@ import jakarta.persistence.Transient;
 //Hint - @NamedQuery uses the name which is defined in @Entity for JPQL, if no name is defined use class name.
 //Hint - @NamedNativeQuery can optionally be used if there is a need for SQL query.
 @NamedQuery(name = "Medicine.findAll", query = "SELECT m FROM Medicine m")
+@NamedQuery(name = "Medicine.isDuplicate", query = "SELECT m FROM Medicine m WHERE m.drugName = :drugName")
+
 //Hint - @AttributeOverride can override column details.  This entity uses medicine_id as its primary key name, it needs to override the name in the mapped super class.
 @AttributeOverride(name = "id", column = @Column(name = "medicine_id"))
 //Hint - PojoBase is inherited by any entity with integer as their primary key.
@@ -146,5 +148,11 @@ public class Medicine extends PojoBase implements Serializable {
 	}
 
 	//Inherited hashCode/equals is sufficient for this entity class
+	@Override
+    public int hashCode() {
+        // Safely handle null prescriptions with conditional check
+        return Objects.hash(drugName, manufacturerName, dosageInformation, 
+                            prescriptions != null ? prescriptions.hashCode() : 0);
+    }
 
 }

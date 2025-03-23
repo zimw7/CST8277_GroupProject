@@ -14,6 +14,8 @@ package acmemedical.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.AttributeOverride;
@@ -98,9 +100,9 @@ public class MedicalCertificate extends PojoBase implements Serializable {
 		this.signed = signed;
 	}
 
-	public void setSigned(boolean signed) {
+	/*public void setSigned(boolean signed) {
 		this.signed = (byte) (signed ? 0b0001 : 0b0000);
-	}
+	}*/
 	
 	//Inherited hashCode/equals is sufficient for this entity class
 
