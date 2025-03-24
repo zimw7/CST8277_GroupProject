@@ -24,8 +24,6 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 
-@SuppressWarnings("unused")
-
 /**
  * Abstract class that is base of (class) hierarchy for all @Entity classes
  * @param <ID> - type of composite key used

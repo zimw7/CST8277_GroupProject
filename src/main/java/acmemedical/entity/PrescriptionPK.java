@@ -21,7 +21,6 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
-@SuppressWarnings("unused")
 /**
  * The primary key class for the prescription database table.
  */

@@ -33,8 +33,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
-@SuppressWarnings("unused")
-
 @Singleton
 public class CustomIdentityStoreJPAHelper {
 

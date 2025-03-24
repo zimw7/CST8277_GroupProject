@@ -64,6 +64,8 @@ public class PhysicianResource {
         LOG.debug("retrieving all physicians ...");
         List<Physician> physicians = service.getAllPhysicians();
         Response response = Response.ok(physicians).build();
+        System.out.println("Response status: " + response.getStatus());
+
         return response;
     }
 
