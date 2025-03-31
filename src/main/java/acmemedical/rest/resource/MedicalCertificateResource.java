@@ -1,3 +1,4 @@
+
 /********************************************************************************************************
  * File:  MedicalCertificateResource.java Course Materials CST 8277
  *
@@ -125,4 +126,7 @@ public class MedicalCertificateResource {
     }
 
 
+
 }
+
+

@@ -449,7 +449,6 @@ public class ACMEMedicalService implements Serializable {
         idQuery.setParameter(PARAM1,membershipId);
         MedicalCertificate CertificateById = idQuery.getSingleResult();
         return CertificateById;
-
     }
 
    
