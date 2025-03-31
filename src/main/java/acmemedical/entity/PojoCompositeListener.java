@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
-@SuppressWarnings("unused")
-
 public class PojoCompositeListener {
 
 	// TODO PCL01 - What annotation is used when we want to do something just before object is INSERT'd into database?

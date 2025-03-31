@@ -42,6 +42,8 @@ import java.util.Set;
 import jakarta.ejb.Singleton;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -206,6 +208,7 @@ public class ACMEMedicalService implements Serializable {
     // includes JOIN FETCH that we cannot add to the above API
     public MedicalSchool getMedicalSchoolById(int id) {
         TypedQuery<MedicalSchool> specificMedicalSchoolQuery = em.createNamedQuery(SPECIFIC_MEDICAL_SCHOOL_QUERY_NAME, MedicalSchool.class);
+        specificMedicalSchoolQuery.setParameter(PARAM1, id);
         specificMedicalSchoolQuery.setParameter(PARAM1, id);
         return specificMedicalSchoolQuery.getSingleResult();
     }

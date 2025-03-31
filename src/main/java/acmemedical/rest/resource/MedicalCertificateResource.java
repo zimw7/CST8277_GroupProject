@@ -1,3 +1,18 @@
+
+/********************************************************************************************************
+ * File:  MedicalCertificateResource.java Course Materials CST 8277
+ *
+ * @author Teddy Yap
+ * @author Shariar (Shawn) Emami
+ * 
+ * Group Members:
+ * - Jiaying Qiu
+ * - Tianshu Liu
+ * - Mengying Liu
+ * - Zimeng Wang
+ * 
+ */
+
 package acmemedical.rest.resource;
 
 import acmemedical.ejb.ACMEMedicalService;
@@ -111,4 +126,7 @@ public class MedicalCertificateResource {
     }
 
 
+
 }
+
+
