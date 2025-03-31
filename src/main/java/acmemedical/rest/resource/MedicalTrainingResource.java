@@ -42,6 +42,7 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.soteria.WrappingCallerPrincipal;
 
 import acmemedical.ejb.ACMEMedicalService;
+import acmemedical.entity.MedicalSchool;
 import acmemedical.entity.MedicalTraining;
 import acmemedical.entity.Physician;
 import acmemedical.entity.SecurityUser;
@@ -62,7 +63,7 @@ public class MedicalTrainingResource {
 
 
     @GET
-    @RolesAllowed({ADMIN_ROLE})
+    @RolesAllowed({ADMIN_ROLE,USER_ROLE})
     public Response getMedicalTrainings() {
         LOG.debug("retrieving all medical training ...");
         List<MedicalTraining> students = service.getAllMedicalTrainings();
@@ -112,11 +113,36 @@ public class MedicalTrainingResource {
 
     @DELETE
     @RolesAllowed({ADMIN_ROLE})
-    public Response deleteMedicalTrainingById(int id) {
+    @Path("/{medicalTrainingId}")
+    public Response deleteMedicalTrainingById(@PathParam("medicalTrainingId") int id) {
         LOG.debug("Deleting medical training with id = {}", id);
         service.deleteMedicalTraining(id);
         return Response.ok(id).build();
     }
+    
+    @PUT
+    @RolesAllowed({ADMIN_ROLE})
+    @Path(RESOURCE_PATH_ID_PATH)
+    public Response updateMedicalTraning(@PathParam(RESOURCE_PATH_ID_ELEMENT) int mtId, MedicalTraining updatingMedicalTraining) {
+        LOG.debug("Updating a specific medical training with id = {}", mtId);
+        
+        if (updatingMedicalTraining == null) {
+            return Response.status(Status.BAD_REQUEST).entity("Request body is empty").build();
+        }
+        
+        MedicalTraining existingTraining = service.getMedicalTrainingById(mtId);
+        if (existingTraining == null) {
+            return Response.status(Status.NOT_FOUND).entity("MedicalTraining not found").build();
+        }
+        
+        if (updatingMedicalTraining.getDurationAndStatus()!= null) {
+            existingTraining.setDurationAndStatus(updatingMedicalTraining.getDurationAndStatus());
+        }
+        MedicalTraining updated = service.updateMedicalTraining(mtId, existingTraining);
+        return Response.ok(updated).build();
+        
+    }
+    
     
 }
 

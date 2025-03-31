@@ -1,0 +1,1144 @@
+{
+	"id": "8f97d878-063f-43ce-bc52-83925f64ecc5",
+	"name": "REST-ACMEMedical-Sample",
+	"timestamp": "2025-03-31T01:01:19.030Z",
+	"collection_id": "40887392-b9b45869-3fb4-4ce5-80e9-b5d1aaf52a16",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-03-31T01:01:07.959Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "9f38456c-840e-47d0-a524-61f753d28697",
+			"name": "GET All Physicians (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician",
+			"time": 739,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				739
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1eb4804f-fbd1-4431-b301-12b3c3b58ead",
+			"name": "GET All Physicians (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician",
+			"time": 72,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				72
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "49ffacd1-6c9c-4263-91a3-c3b1fb3555ab",
+			"name": "GET Physician By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician/1",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				25
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "bba0e468-94e2-4656-8fff-48b72d3af964",
+			"name": "GET Physician By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician/1",
+			"time": 17,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "fd0547fe-6777-4b91-8844-aba4563c977b",
+			"name": "POST New Physician (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician",
+			"time": 164,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				164
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a6fccd4f-1f95-4a7b-8d9c-9e060b517808",
+			"name": "POST New Physician (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician",
+			"time": 13,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b4343ed2-6db8-453b-a4ac-3ea4f39855a7",
+			"name": "PUT Physician By ID(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician/1",
+			"time": 69,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				69
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "20228baa-ff12-4f8c-b343-74e7d453b2c5",
+			"name": "DELETE Physician By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician/2",
+			"time": 65,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				65
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f36de6a2-d5e0-42ef-b0a0-c0e83e7d5142",
+			"name": "DELETE Physician By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/physician/2",
+			"time": 15,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				15
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "30460f33-7aeb-4b68-b630-a6674f6a2d9c",
+			"name": "GET All Patients (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient",
+			"time": 620,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				620
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6518587a-3945-41fc-9cec-493beb2bdb9a",
+			"name": "GET All Patients (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient",
+			"time": 593,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				593
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4fafa571-eff8-466b-9555-5bbfb5812a1b",
+			"name": "GET Patient By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/1",
+			"time": 574,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				574
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "5b784e09-02f0-4425-b121-d784ddd6e071",
+			"name": "GET Patient By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/1",
+			"time": 537,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				537
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "91a73ddc-830c-4846-adf2-41695d34c268",
+			"name": "POST New Patient (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				35
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1983c37d-a938-4ffe-94e5-40f9f6f335a3",
+			"name": "POST New Patient (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient",
+			"time": 12,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2472dc6b-9040-4a4e-9d2c-57df23ecea17",
+			"name": "UPDATE Patient By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/1",
+			"time": 513,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				513
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4543c267-fe93-4095-b4df-fb750d3306f8",
+			"name": "UPDATE Patient By ID(user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/1",
+			"time": 13,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a6deed89-0cc0-42aa-803c-d93aeb367b34",
+			"name": "DELETE Patient By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/3",
+			"time": 16,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				16
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "831eccd2-bdf6-4e98-abaf-0814dd2f4bb1",
+			"name": "DELETE Patient By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/patient/3",
+			"time": 8,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f6031521-93ca-43d5-b6de-2211d3a5b04c",
+			"name": "GET All Medicines (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine",
+			"time": 381,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				381
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b69f76e0-83b8-497c-91ee-dd9070aeb79f",
+			"name": "GET All Medicines (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine",
+			"time": 335,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				335
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d3c16b9d-f03a-47fd-9b8b-1a9690fa5719",
+			"name": "GET Medicine By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine/1",
+			"time": 517,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				517
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "df0962ca-1b9d-4ad8-89b1-43f7cba14a85",
+			"name": "GET Medicine By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine/1",
+			"time": 490,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				490
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f965b4d7-3001-4d4f-babb-64d1d9ad6caf",
+			"name": "POST New Medicine (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine",
+			"time": 19,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				19
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b575d112-0334-4888-8195-0f6bc74fca2b",
+			"name": "POST New Medicine (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine",
+			"time": 12,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b9a29e7e-3ced-49c6-9179-e63ce93a0b2b",
+			"name": "UPDATE New Medicine (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine/1",
+			"time": 532,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				532
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b6302dfb-3b1d-4ef3-ab02-77116c5df77c",
+			"name": "DELETE Medicine By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine/2",
+			"time": 20,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "84cd6b97-5cb5-4620-b182-d35da5b1e6d7",
+			"name": "DELETE Medicine By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicine/2",
+			"time": 12,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4ab82e7a-8d35-435a-8aa8-111870d7207a",
+			"name": "GET All Medical Schools (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				23
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "69a7b159-274c-47d5-9a30-ca0dbb64eccb",
+			"name": "GET All Medical Schools (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "73032625-b1db-4734-b184-d8f4be232a8c",
+			"name": "GET Medical School By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/2",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				21
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "3546c480-f095-4c34-97dc-2b0091428909",
+			"name": "GET Medical School By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/2",
+			"time": 26,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				26
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "fe563834-3b02-491c-9b72-07d7055d2f16",
+			"name": "POST New Medical School (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool",
+			"time": 25,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				25
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a3277bd5-2f15-4e75-9dda-9de5e3b66a06",
+			"name": "POST New Medical School (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool",
+			"time": 13,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6718b658-6394-479a-92b7-66b5da8a6ddc",
+			"name": "UPDATE New Medical School (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/2",
+			"time": 24,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				24
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "9538baa6-4e6a-402a-bcf3-5b7d16f1bf58",
+			"name": "UPDATE New Medical School (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/2",
+			"time": 13,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4256fab1-a659-4aef-a0c9-1c824260781a",
+			"name": "DELETE Medical School By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/3",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				16
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "cca3a20c-178c-4f50-8cb5-75cfd43c60e5",
+			"name": "DELETE Medical School By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalschool/2",
+			"time": 10,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7a7edef6-e00c-4342-9484-1c202d0e04eb",
+			"name": "GET All Medical Training(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining",
+			"time": 27,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				27
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "785bf3d9-3ddc-4f48-85c6-0cb95729dfd0",
+			"name": "GET All Medical Training (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				21
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1b84f757-ca08-4e01-a32d-975451480aae",
+			"name": "GET Medical Training By ID(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining/1",
+			"time": 19,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				19
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "28cb4f90-e739-4970-9c27-bfeb92ee4d80",
+			"name": "GET Medical Training By ID(user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining/1",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				21
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "5e6a8ec8-a7d3-427f-8f79-9ed84ff3f2cf",
+			"name": "POST New Medical Training(user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining",
+			"time": 12,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ea349151-d53f-4efa-9610-c808c852c009",
+			"name": "UPDATE New Medical School (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining/2",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				37
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "728c2faf-3101-4a12-b326-9609cfba2b01",
+			"name": "DELETE Medical Training By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicaltraining/3",
+			"time": 12,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1313b33f-b0e2-4a13-9fc9-93186b9ba59a",
+			"name": "GET All Prescriptions(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/prescription",
+			"time": 429,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				429
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6cc00f0a-db26-46f9-8c91-a98e86d54fcd",
+			"name": "GET Prescription By ID(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/prescription/1/1",
+			"time": 579,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				579
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c5518757-4f67-4ca3-b07a-c3deebc2aafa",
+			"name": "POST New Prescription(user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/prescription",
+			"time": 13,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b90c4a7a-39a9-4859-9a3c-5f2a569ca6a3",
+			"name": "DELETE Prescription By ID (user)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/prescription/1/1",
+			"time": 9,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "07d344f0-d971-4ecf-ac95-1601f47d422b",
+			"name": "GET All Certificates(admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalcertificate",
+			"time": 26,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				26
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c247e4ac-f340-4725-bbe8-946865829e5a",
+			"name": "GET Certificate By ID (admin)",
+			"url": "http://localhost:8080/rest-acmemedical/api/v1/medicalcertificate/1",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				23
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 7831,
+	"collection": {
+		"requests": [
+			{
+				"id": "9f38456c-840e-47d0-a524-61f753d28697",
+				"method": "GET"
+			},
+			{
+				"id": "1eb4804f-fbd1-4431-b301-12b3c3b58ead",
+				"method": "GET"
+			},
+			{
+				"id": "49ffacd1-6c9c-4263-91a3-c3b1fb3555ab",
+				"method": "GET"
+			},
+			{
+				"id": "bba0e468-94e2-4656-8fff-48b72d3af964",
+				"method": "GET"
+			},
+			{
+				"id": "fd0547fe-6777-4b91-8844-aba4563c977b",
+				"method": "POST"
+			},
+			{
+				"id": "a6fccd4f-1f95-4a7b-8d9c-9e060b517808",
+				"method": "POST"
+			},
+			{
+				"id": "b4343ed2-6db8-453b-a4ac-3ea4f39855a7",
+				"method": "PUT"
+			},
+			{
+				"id": "20228baa-ff12-4f8c-b343-74e7d453b2c5",
+				"method": "DELETE"
+			},
+			{
+				"id": "f36de6a2-d5e0-42ef-b0a0-c0e83e7d5142",
+				"method": "DELETE"
+			},
+			{
+				"id": "30460f33-7aeb-4b68-b630-a6674f6a2d9c",
+				"method": "GET"
+			},
+			{
+				"id": "6518587a-3945-41fc-9cec-493beb2bdb9a",
+				"method": "GET"
+			},
+			{
+				"id": "4fafa571-eff8-466b-9555-5bbfb5812a1b",
+				"method": "GET"
+			},
+			{
+				"id": "5b784e09-02f0-4425-b121-d784ddd6e071",
+				"method": "GET"
+			},
+			{
+				"id": "91a73ddc-830c-4846-adf2-41695d34c268",
+				"method": "POST"
+			},
+			{
+				"id": "1983c37d-a938-4ffe-94e5-40f9f6f335a3",
+				"method": "POST"
+			},
+			{
+				"id": "2472dc6b-9040-4a4e-9d2c-57df23ecea17",
+				"method": "PUT"
+			},
+			{
+				"id": "4543c267-fe93-4095-b4df-fb750d3306f8",
+				"method": "PUT"
+			},
+			{
+				"id": "a6deed89-0cc0-42aa-803c-d93aeb367b34",
+				"method": "DELETE"
+			},
+			{
+				"id": "831eccd2-bdf6-4e98-abaf-0814dd2f4bb1",
+				"method": "DELETE"
+			},
+			{
+				"id": "f6031521-93ca-43d5-b6de-2211d3a5b04c",
+				"method": "GET"
+			},
+			{
+				"id": "b69f76e0-83b8-497c-91ee-dd9070aeb79f",
+				"method": "GET"
+			},
+			{
+				"id": "d3c16b9d-f03a-47fd-9b8b-1a9690fa5719",
+				"method": "GET"
+			},
+			{
+				"id": "df0962ca-1b9d-4ad8-89b1-43f7cba14a85",
+				"method": "GET"
+			},
+			{
+				"id": "f965b4d7-3001-4d4f-babb-64d1d9ad6caf",
+				"method": "POST"
+			},
+			{
+				"id": "b575d112-0334-4888-8195-0f6bc74fca2b",
+				"method": "POST"
+			},
+			{
+				"id": "b9a29e7e-3ced-49c6-9179-e63ce93a0b2b",
+				"method": "PUT"
+			},
+			{
+				"id": "b6302dfb-3b1d-4ef3-ab02-77116c5df77c",
+				"method": "DELETE"
+			},
+			{
+				"id": "84cd6b97-5cb5-4620-b182-d35da5b1e6d7",
+				"method": "DELETE"
+			},
+			{
+				"id": "4ab82e7a-8d35-435a-8aa8-111870d7207a",
+				"method": "GET"
+			},
+			{
+				"id": "69a7b159-274c-47d5-9a30-ca0dbb64eccb",
+				"method": "GET"
+			},
+			{
+				"id": "73032625-b1db-4734-b184-d8f4be232a8c",
+				"method": "GET"
+			},
+			{
+				"id": "3546c480-f095-4c34-97dc-2b0091428909",
+				"method": "GET"
+			},
+			{
+				"id": "fe563834-3b02-491c-9b72-07d7055d2f16",
+				"method": "POST"
+			},
+			{
+				"id": "a3277bd5-2f15-4e75-9dda-9de5e3b66a06",
+				"method": "POST"
+			},
+			{
+				"id": "6718b658-6394-479a-92b7-66b5da8a6ddc",
+				"method": "PUT"
+			},
+			{
+				"id": "9538baa6-4e6a-402a-bcf3-5b7d16f1bf58",
+				"method": "PUT"
+			},
+			{
+				"id": "4256fab1-a659-4aef-a0c9-1c824260781a",
+				"method": "DELETE"
+			},
+			{
+				"id": "cca3a20c-178c-4f50-8cb5-75cfd43c60e5",
+				"method": "DELETE"
+			},
+			{
+				"id": "7a7edef6-e00c-4342-9484-1c202d0e04eb",
+				"method": "GET"
+			},
+			{
+				"id": "785bf3d9-3ddc-4f48-85c6-0cb95729dfd0",
+				"method": "GET"
+			},
+			{
+				"id": "1b84f757-ca08-4e01-a32d-975451480aae",
+				"method": "GET"
+			},
+			{
+				"id": "28cb4f90-e739-4970-9c27-bfeb92ee4d80",
+				"method": "GET"
+			},
+			{
+				"id": "5e6a8ec8-a7d3-427f-8f79-9ed84ff3f2cf",
+				"method": "POST"
+			},
+			{
+				"id": "ea349151-d53f-4efa-9610-c808c852c009",
+				"method": "PUT"
+			},
+			{
+				"id": "728c2faf-3101-4a12-b326-9609cfba2b01",
+				"method": "DELETE"
+			},
+			{
+				"id": "1313b33f-b0e2-4a13-9fc9-93186b9ba59a",
+				"method": "GET"
+			},
+			{
+				"id": "6cc00f0a-db26-46f9-8c91-a98e86d54fcd",
+				"method": "GET"
+			},
+			{
+				"id": "c5518757-4f67-4ca3-b07a-c3deebc2aafa",
+				"method": "POST"
+			},
+			{
+				"id": "b90c4a7a-39a9-4859-9a3c-5f2a569ca6a3",
+				"method": "DELETE"
+			},
+			{
+				"id": "07d344f0-d971-4ecf-ac95-1601f47d422b",
+				"method": "GET"
+			},
+			{
+				"id": "c247e4ac-f340-4725-bbe8-946865829e5a",
+				"method": "GET"
+			}
+		]
+	}
+}

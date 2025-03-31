@@ -121,6 +121,22 @@ public class PhysicianResource {
         }
         return Response.ok(updated).build();
     }
+//    public Response updatePhysician(@PathParam("id") int id, Physician physician) {
+//        if (physician == null) {
+//            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid physician data").build();
+//        }
+//
+//        try {
+//            Physician updated = service.updatePhysicianById(id, physician);
+//            if (updated == null) {
+//                return Response.status(Response.Status.NOT_FOUND).entity("Physician not found").build();
+//            }
+//            return Response.ok(updated).build();
+//        } catch (Exception e) {
+//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+//                    .entity("An error occurred: " + e.getMessage()).build();
+//        }
+//    }
 
     @DELETE
     @RolesAllowed({ADMIN_ROLE})  
